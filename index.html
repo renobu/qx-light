@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Портфолио · Даниил</title>
+<meta name="description" content="Портфолио Даниила — backend-разработчик, генетика, ML.">
+<style>
+  :root{
+    --bg:#ffffff; --fg:#1a1a1a; --muted:#6b7280; --line:#e8e8e8;
+    --card:#fafafa; --accent:#1a1a1a;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.65; font-size:17px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:680px; margin:0 auto; padding:72px 24px 96px}
+  header{margin-bottom:48px}
+  .eyebrow{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:0 0 12px}
+  h1{font-size:40px; line-height:1.1; margin:0 0 14px; font-weight:700; letter-spacing:-.02em}
+  .role{font-size:18px; color:var(--muted); margin:0}
+  section{margin-top:48px}
+  h2{font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0 0 18px; font-weight:600}
+  p{margin:0 0 14px}
+  .tags{display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:0}
+  .tags li{
+    border:1px solid var(--line); border-radius:999px; padding:6px 14px;
+    font-size:14px; background:var(--card);
+  }
+  .group{margin-bottom:20px}
+  .group .label{font-size:13px; color:var(--muted); margin:0 0 8px}
+  .facts{list-style:none; padding:0; margin:0}
+  .facts li{padding:10px 0; border-top:1px solid var(--line)}
+  .facts li:first-child{border-top:none}
+  .contacts{list-style:none; padding:0; margin:0}
+  .contacts li{padding:6px 0}
+  a{color:var(--fg); text-underline-offset:3px}
+  .note{color:var(--muted); font-size:15px}
+  footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--line); font-size:14px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px}
+  .switch a{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Портфолио · Portfolio</p>
+    <h1>Даниил</h1>
+    <p class="role">Backend-разработчик. Увлекаюсь генетикой, ML и всеми остальными занудными вещами для других людей.</p>
+  </header>
+
+  <section>
+    <h2>О себе</h2>
+    <p>Меня зовут Даниил, мне <span id="age">22</span> года. Люблю кодить, мыслить о будущем и говорить о политике, технологиях и экономике — стараюсь поддержать практически любую тему.</p>
+  </section>
+
+  <section>
+    <h2>Навыки</h2>
+    <div class="group">
+      <p class="label">Языки</p>
+      <ul class="tags">
+        <li>C#</li><li>Python</li><li>Java</li><li>PHP</li><li>JavaScript</li>
+      </ul>
+    </div>
+    <div class="group">
+      <p class="label">Базы данных и хранилища</p>
+      <ul class="tags">
+        <li>PostgreSQL</li><li>MariaDB</li><li>Redis</li>
+      </ul>
+    </div>
+    <div class="group">
+      <p class="label">Генетика и ML</p>
+      <ul class="tags">
+        <li>Biopython</li><li>scikit-bio</li><li>BioJava</li><li>pandas</li><li>NumPy</li><li>scikit-learn</li><li>PyTorch</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Немного фактов</h2>
+    <ul class="facts">
+      <li>Бэкенд — родная стихия: проектирование сервисов, API и работа с данными.</li>
+      <li>Интересуюсь биоинформатикой и генетикой — от анализа последовательностей до ML на биоданных.</li>
+      <li>Много думаю о будущем: технологии, экономика, политика — люблю обсуждать всё это.</li>
+      <li>Готов поддержать почти любой разговор и докопаться до сути «занудных» вещей.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Проекты</h2>
+    <p class="note">Проекты живут в приватных репозиториях — доступ закрыт.</p>
+  </section>
+
+  <section>
+    <h2>Контакты</h2>
+    <ul class="contacts">
+      <li>Email — <a href="mailto:y@qx.kg">y@qx.kg</a></li>
+      <li>WeChat — rnbone</li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>© <span id="year">2026</span> Даниил · qx.kg</span>
+    <span class="switch"><a href="https://b.qx.kg/">Тёмная тема →</a></span>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    var bd = new Date(2004, 0, 24); // 24 января 2004
+    var now = new Date();
+    var age = now.getFullYear() - bd.getFullYear();
+    var m = now.getMonth() - bd.getMonth();
+    if (m < 0 || (m === 0 && now.getDate() < bd.getDate())) age--;
+    document.getElementById('age').textContent = age;
+    document.getElementById('year').textContent = now.getFullYear();
+  })();
+</script>
+</body>
+</html>
