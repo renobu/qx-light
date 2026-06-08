@@ -16,7 +16,7 @@
     line-height:1.7; font-size:17px; -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:680px; margin:0 auto; padding:28px 24px 96px}
-  .langnav{display:flex; gap:6px; justify-content:flex-end; margin-bottom:36px}
+  .langnav{display:flex; gap:6px; justify-content:flex-end; margin-bottom:28px}
   .langnav button{
     border:1px solid var(--line); background:transparent; color:var(--muted);
     border-radius:999px; padding:5px 13px; font-size:13px; cursor:pointer; font-family:inherit;
@@ -25,6 +25,7 @@
   .langnav button:hover{color:var(--fg)}
   .langnav button[aria-current="true"]{background:var(--fg); color:var(--bg); border-color:var(--fg)}
   header{margin-bottom:8px}
+  .avatar{width:104px; height:104px; border-radius:50%; object-fit:cover; border:1px solid var(--line); display:block; margin:0 0 22px; background:var(--card)}
   .eyebrow{font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 14px}
   h1{font-size:44px; line-height:1.05; margin:0 0 10px; font-weight:700; letter-spacing:-.02em}
   .namesub{font-size:15px; color:var(--muted); margin:0 0 20px}
@@ -38,6 +39,7 @@
   .group{margin-bottom:22px}
   .group:last-child{margin-bottom:0}
   .group .label{font-size:13px; color:var(--muted); margin:0 0 9px}
+  .more{color:var(--muted); font-size:14px; margin:18px 0 0}
   .facts{list-style:none; padding:0; margin:0}
   .facts li{padding:13px 0; border-top:1px solid var(--line)}
   .facts li:first-child{border-top:none; padding-top:0}
@@ -59,6 +61,7 @@
   </div>
 
   <header>
+    <img id="avatar" class="avatar" src="avatar.jpg" alt="" onerror="this.style.display='none'">
     <p class="eyebrow" id="eyebrow"></p>
     <h1 id="name"></h1>
     <p class="namesub" id="namesub"></p>
@@ -73,10 +76,14 @@
     <h2 id="skills_h"></h2>
     <div class="group"><p class="label" id="lang_label"></p><ul class="tags" id="skills_lang"></ul></div>
     <div class="group"><p class="label" id="db_label"></p><ul class="tags" id="skills_db"></ul></div>
+    <div class="group"><p class="label" id="infra_label"></p><ul class="tags" id="skills_infra"></ul></div>
     <div class="group"><p class="label" id="bio_label"></p><ul class="tags" id="skills_bio"></ul></div>
+    <p class="more" id="skills_more"></p>
   </section>
 
   <section><h2 id="spoken_h"></h2><ul class="tags" id="spoken"></ul></section>
+
+  <section><h2 id="likes_h"></h2><ul class="facts" id="likes"></ul></section>
 
   <section><h2 id="facts_h"></h2><ul class="facts" id="facts"></ul></section>
 
@@ -93,9 +100,10 @@
 <script>
 (function(){
   var SKILLS = {
-    lang: ["C#","Q#","Python","Java","PHP","JavaScript"],
-    db:   ["PostgreSQL","MariaDB","Redis"],
-    bio:  ["Biopython","scikit-bio","BioJava","pandas","NumPy","scikit-learn","PyTorch","Q#"]
+    lang:  ["C#","Q#","Python","Java","PHP","JavaScript"],
+    db:    ["PostgreSQL","MariaDB","Redis","Memcached"],
+    infra: ["Docker","Kubernetes"],
+    bio:   ["Biopython","scikit-bio","BioJava","pandas","NumPy","scikit-learn","PyTorch","Q#"]
   };
 
   var I18N = {
@@ -115,12 +123,21 @@
       skills_h:"Навыки",
       lang_label:"Языки программирования",
       db_label:"Базы данных и хранилища",
+      infra_label:"Инфраструктура",
       bio_label:"Генетика, ML и квант",
+      skills_more:"И ещё куча всего, просто лень перечислять дальше.",
       spoken_h:"Языки общения",
       spoken:["Русский (родной)","English","中文 (учу)"],
+      likes_h:"Что люблю",
+      likes:[
+        "Чтиво про экономику. «Капитал» Маркса перечитывал несколько раз.",
+        "Аниме.",
+        "Музыку: The Beatles и AC/DC."
+      ],
       facts_h:"Пара честных фактов",
       facts:[
-        "Если вы меня где-то добавили, а я молчу, скорее всего мне просто всё равно. Это не высокомерие, я честно так живу.",
+        "Если я вам не отвечаю или отвечаю редко, это скорее всего потому, что мне на вас плевать. Ничего личного, просто так и есть.",
+        "Выгляжу очень по-разному. Могу быть пиздец каким красивым, а могу и совсем непривлекательным. Зависит только от меня.",
         "За бутылкой хорошего пойла готов разговаривать о философии часами.",
         "Бэкенд для меня это не просто работа, а способ наводить порядок в хаосе.",
         "Верю в будущее сильнее, чем ною про настоящее."
@@ -148,12 +165,21 @@
       skills_h:"Skills",
       lang_label:"Programming languages",
       db_label:"Databases and storage",
+      infra_label:"Infrastructure",
       bio_label:"Genetics, ML and quantum",
+      skills_more:"And a whole lot more, I'm just too lazy to keep listing.",
       spoken_h:"Spoken languages",
       spoken:["Russian (native)","English","中文 (learning)"],
+      likes_h:"What I'm into",
+      likes:[
+        "Reading about economics. I've reread Marx's Capital several times.",
+        "Anime.",
+        "Music: The Beatles and AC/DC."
+      ],
       facts_h:"A few honest facts",
       facts:[
-        "If you added me somewhere and I go quiet, chances are I just don't care. It's not arrogance, that's honestly how I live.",
+        "If I don't reply, or reply rarely, it's most likely because I don't give a damn about you. Nothing personal, that's just how it is.",
+        "I look very different from day to day. I can be ridiculously good-looking, or not attractive at all. It depends entirely on me.",
         "Over a bottle of something good I'll talk philosophy for hours.",
         "Backend isn't just a job to me, it's a way of putting order into chaos.",
         "I believe in the future more than I complain about the present."
@@ -181,12 +207,21 @@
       skills_h:"技能",
       lang_label:"编程语言",
       db_label:"数据库与存储",
+      infra_label:"基础设施",
       bio_label:"遗传学、机器学习与量子",
+      skills_more:"还有一大堆，懒得再往下列了。",
       spoken_h:"使用的语言",
       spoken:["俄语（母语）","English","中文（学习中）"],
+      likes_h:"我喜欢的东西",
+      likes:[
+        "读经济类的东西。马克思的《资本论》我反复读了好几遍。",
+        "动漫。",
+        "音乐：The Beatles 和 AC/DC。"
+      ],
       facts_h:"几句实话",
       facts:[
-        "如果你在哪里加了我，我却不回复，那多半是我真的不在意。不是傲慢，我就是这么活着。",
+        "如果我不回你，或者很少回，那多半是因为我根本不在乎你。没有恶意，事情就是这样。",
+        "我每天看起来都很不一样。可以帅得一塌糊涂，也可以毫无吸引力，全看我自己。",
         "只要有一瓶好酒，我可以聊哲学聊上好几个小时。",
         "后端对我来说不只是工作，更是把混乱整理成秩序的方式。",
         "我相信未来，胜过抱怨当下。"
@@ -219,7 +254,7 @@
     return "en";
   }
 
-  function tags(id, arr){
+  function fill(id, arr){
     var el=document.getElementById(id); el.innerHTML="";
     arr.forEach(function(t){ var li=document.createElement("li"); li.textContent=t; el.appendChild(li); });
   }
@@ -228,6 +263,7 @@
     var t=I18N[lang], A=age(), Y=year();
     document.documentElement.setAttribute("lang", t.htmlLang);
     document.title=t.title;
+    document.getElementById("avatar").alt=t.name;
     document.getElementById("eyebrow").textContent=t.eyebrow;
     document.getElementById("name").textContent=t.name;
     document.getElementById("namesub").textContent=t.namesub;
@@ -243,17 +279,22 @@
     document.getElementById("skills_h").textContent=t.skills_h;
     document.getElementById("lang_label").textContent=t.lang_label;
     document.getElementById("db_label").textContent=t.db_label;
+    document.getElementById("infra_label").textContent=t.infra_label;
     document.getElementById("bio_label").textContent=t.bio_label;
-    tags("skills_lang", SKILLS.lang);
-    tags("skills_db", SKILLS.db);
-    tags("skills_bio", SKILLS.bio);
+    document.getElementById("skills_more").textContent=t.skills_more;
+    fill("skills_lang", SKILLS.lang);
+    fill("skills_db", SKILLS.db);
+    fill("skills_infra", SKILLS.infra);
+    fill("skills_bio", SKILLS.bio);
 
     document.getElementById("spoken_h").textContent=t.spoken_h;
-    tags("spoken", t.spoken);
+    fill("spoken", t.spoken);
+
+    document.getElementById("likes_h").textContent=t.likes_h;
+    fill("likes", t.likes);
 
     document.getElementById("facts_h").textContent=t.facts_h;
-    var fl=document.getElementById("facts"); fl.innerHTML="";
-    t.facts.forEach(function(f){ var li=document.createElement("li"); li.textContent=f; fl.appendChild(li); });
+    fill("facts", t.facts);
 
     document.getElementById("projects_h").textContent=t.projects_h;
     document.getElementById("projects_p").textContent=t.projects_p;
@@ -261,9 +302,12 @@
     document.getElementById("contacts_h").textContent=t.contacts_h;
     var cs=document.getElementById("contacts"); cs.innerHTML="";
     var c1=document.createElement("li");
-    c1.innerHTML='<span class="k">'+t.emailK+'</span><a href="mailto:y@qx.kg">y@qx.kg</a>';
+    c1.innerHTML='<span class="k"></span><a href="mailto:y@qx.kg">y@qx.kg</a>';
+    c1.querySelector(".k").textContent=t.emailK;
     var c2=document.createElement("li");
-    c2.innerHTML='<span class="k">'+t.wechatK+'</span>rnbone';
+    c2.innerHTML='<span class="k"></span>';
+    c2.querySelector(".k").textContent=t.wechatK;
+    c2.appendChild(document.createTextNode("rnbone"));
     cs.appendChild(c1); cs.appendChild(c2);
 
     document.getElementById("foot_rights").textContent=t.rights.replace("{year}",Y);
@@ -273,8 +317,9 @@
     if(theme==="light"){ link.textContent=t.toDark+" →"; link.href="https://b.qx.kg/"; }
     else { link.textContent=t.toLight+" →"; link.href="https://a.qx.kg/"; }
 
-    var btns=document.querySelectorAll(".langnav button");
-    btns.forEach(function(b){ b.setAttribute("aria-current", b.getAttribute("data-lang")===lang ? "true":"false"); });
+    document.querySelectorAll(".langnav button").forEach(function(b){
+      b.setAttribute("aria-current", b.getAttribute("data-lang")===lang ? "true":"false");
+    });
   }
 
   function setLang(lang){
