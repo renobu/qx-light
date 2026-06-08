@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <!--
-  это сайт про меня. если ты копаешься в исходниках — тебе тоже скучно, привет.
+  это сайт про меня. если ты копаешься в исходниках, тебе тоже скучно, привет.
   писал сам, ночью, под дождём и сигарету. ну почти. фронт это не моё, я бэкендер,
-  так что если где-то криво — я знаю, мне плевать, оно работает.
+  так что если где-то криво, я знаю, мне плевать, оно работает.
 -->
 <html lang="ru" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Портфолио</title>
-<meta name="description" content="Даниил / Daniel / 陈砚 — backend, генетика, ML, квантовые технологии. И немного злости на мир.">
+<meta name="description" content="Даниил / Daniel / 陈砚. Backend, генетика, ML, квантовые технологии. И немного злости на мир.">
 <meta name="theme-color" content="#0f1115">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://qx.kg/">
@@ -24,7 +24,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
-  /* две темы. тёмная — настоящая, светлая — для тех кто боится темноты */
+  /* две темы. тёмная настоящая, светлая для тех кто боится темноты */
   /* --accent оранжевый, как кончик бычка на фото. да, это метафора. да, я такой */
   [data-theme="light"]{--bg:#ffffff;--fg:#1a1a1a;--muted:#6b7280;--line:#e8e8e8;--card:#fafafa;--accent:#c2410c;--vignette:rgba(0,0,0,.05);--grain:.035}
   [data-theme="dark"]{--bg:#08090c;--fg:#dfe1e4;--muted:#82868e;--line:#1a1d23;--card:#0e1013;--accent:#f4702f;--vignette:rgba(0,0,0,.78);--grain:.07}
@@ -37,7 +37,7 @@
     line-height:1.7; font-size:17px; -webkit-font-smoothing:antialiased;
   }
 
-  /* атмосфера. без неё это просто резюме, а с ней — настроение. чувствуешь? */
+  /* атмосфера. без неё это просто резюме, а с ней настроение. чувствуешь? */
   .fx{position:fixed; inset:0; pointer-events:none; z-index:0}
   .fx-photo{display:none}
   .fx-rain{display:none}
@@ -55,7 +55,7 @@
     opacity:.10; filter:blur(4px) grayscale(.25);
   }
   /* дождь. да, я знаю что он мешал читать. прикрутил громкость, не благодари */
-  /* ближний слой — быстрый, дальний — медленный. это называется "глубина", я гуглил */
+  /* ближний слой быстрый, дальний медленный. это называется "глубина", я гуглил */
   [data-theme="dark"] .fx-rain{
     display:block; opacity:.24;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='96'%3E%3Cg stroke='%23c7d2e6' stroke-width='1' stroke-linecap='round' stroke-opacity='0.45'%3E%3Cline x1='10' y1='2' x2='6' y2='48'/%3E%3Cline x1='30' y1='44' x2='26' y2='90'/%3E%3Cline x1='46' y1='10' x2='42' y2='56'/%3E%3Cline x1='60' y1='40' x2='56' y2='86'/%3E%3C/g%3E%3C/svg%3E");
@@ -399,7 +399,7 @@
     document.getElementById("projects_h").textContent=t.projects_h;
     document.getElementById("projects_p").textContent=t.projects_p;
 
-    // контакты. писать можно. отвечу ли я — это уже лотерея (спойлер: см. "честные факты")
+    // контакты. писать можно. отвечу ли я, это уже лотерея (спойлер: см. "честные факты")
     document.getElementById("contacts_h").textContent=t.contacts_h;
     var cs=document.getElementById("contacts"); cs.innerHTML="";
     var c1=document.createElement("li");
@@ -432,7 +432,7 @@
     b.addEventListener("click", function(){ setLang(b.getAttribute("data-lang")); });
   });
 
-  // всё, рендер поехал. если ты дочитал комменты до конца — ты либо рекрутер, либо тебе так же одиноко. в обоих случаях привет
+  // всё, рендер поехал. если ты дочитал комменты до конца, ты либо рекрутер, либо тебе так же одиноко. в обоих случаях привет
   render(detect());
 })();
 </script>
