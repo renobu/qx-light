@@ -109,6 +109,36 @@
   footer{margin-top:64px; padding-top:22px; border-top:1px solid var(--line); font-size:14px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px}
   .switch a{color:var(--muted)}
   .switch a:hover{color:var(--accent)}
+
+  /* доводка тёмной темы до ума. свет, тлен, детали */
+  ::selection{background:var(--accent); color:#fff}
+  body, a, .tags li{transition:color .25s ease, background-color .25s ease, border-color .25s ease}
+  /* холодный свет фонаря сверху слева + тёплый отблеск справа, как на фото */
+  [data-theme="dark"] body{
+    background:
+      radial-gradient(70% 45% at 12% -8%, rgba(96,118,160,.12), transparent 60%),
+      radial-gradient(55% 40% at 100% 0%, rgba(244,112,47,.05), transparent 55%),
+      var(--bg);
+    background-attachment:fixed;
+  }
+  /* "ПОРТФОЛИО" тлеет оранжевым, как бычок */
+  [data-theme="dark"] .eyebrow{color:var(--accent); opacity:.85}
+  /* имя слегка светится в темноте */
+  [data-theme="dark"] h1{text-shadow:0 1px 30px rgba(223,225,228,.07)}
+  /* тлеющая точка перед каждым заголовком */
+  [data-theme="dark"] h2::before{
+    content:""; display:inline-block; width:5px; height:5px; border-radius:50%;
+    background:var(--accent); margin-right:9px; vertical-align:middle;
+    box-shadow:0 0 8px rgba(244,112,47,.6); opacity:.85;
+  }
+  /* теги загораются акцентом при наведении */
+  [data-theme="dark"] .tags li:hover{border-color:var(--accent); color:#fff}
+  /* скроллбар, чтобы не ломал темноту */
+  [data-theme="dark"]{scrollbar-width:thin; scrollbar-color:#262b33 transparent}
+  [data-theme="dark"]::-webkit-scrollbar{width:10px}
+  [data-theme="dark"]::-webkit-scrollbar-track{background:transparent}
+  [data-theme="dark"]::-webkit-scrollbar-thumb{background:#20242b; border-radius:6px; border:2px solid #08090c}
+  [data-theme="dark"]::-webkit-scrollbar-thumb:hover{background:#2c313a}
 </style>
 </head>
 <body>
