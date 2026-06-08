@@ -4,18 +4,58 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Портфолио</title>
-<meta name="description" content="Даниил / Daniel / 陈砚 — backend, генетика, ML, квантовые технологии.">
+<meta name="description" content="Даниил / Daniel / 陈砚 — backend, генетика, ML, квантовые технологии. И немного злости на мир.">
+<meta name="theme-color" content="#0f1115">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qx.kg/">
+<meta property="og:title" content="Даниил / Daniel / 陈砚">
+<meta property="og:description" content="Backend, генетика, ML, квантовые технологии. И немного злости на мир.">
+<meta property="og:image" content="https://a.qx.kg/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Даниил / Daniel / 陈砚">
+<meta name="twitter:description" content="Backend, генетика, ML, квантовые технологии. И немного злости на мир.">
+<meta name="twitter:image" content="https://a.qx.kg/og.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
-  [data-theme="light"]{--bg:#ffffff;--fg:#1a1a1a;--muted:#6b7280;--line:#e8e8e8;--card:#fafafa}
-  [data-theme="dark"]{--bg:#0f1115;--fg:#e8e8e8;--muted:#9aa0a6;--line:#23262d;--card:#161920}
+  [data-theme="light"]{--bg:#ffffff;--fg:#1a1a1a;--muted:#6b7280;--line:#e8e8e8;--card:#fafafa;--accent:#c2410c;--vignette:rgba(0,0,0,.05);--grain:.035}
+  [data-theme="dark"]{--bg:#0f1115;--fg:#e8e8e8;--muted:#9aa0a6;--line:#23262d;--card:#161920;--accent:#ff7a3c;--vignette:rgba(0,0,0,.6);--grain:.06}
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{
-    margin:0; background:var(--bg); color:var(--fg);
+    margin:0; position:relative; min-height:100vh; overflow-x:hidden;
+    background:var(--bg); color:var(--fg);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",Helvetica,Arial,sans-serif;
     line-height:1.7; font-size:17px; -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:680px; margin:0 auto; padding:28px 24px 96px}
+
+  /* atmosphere */
+  .fx{position:fixed; inset:0; pointer-events:none; z-index:0}
+  .fx-photo{display:none}
+  .fx-rain{display:none}
+  .fx-vignette{background:radial-gradient(125% 125% at 50% 30%, transparent 48%, var(--vignette) 100%)}
+  .fx-grain{
+    opacity:var(--grain);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  [data-theme="dark"] .fx-photo{
+    display:block;
+    background:url("avatar.jpg") center 16% / cover no-repeat;
+    opacity:.10; filter:blur(4px) grayscale(.25);
+  }
+  [data-theme="dark"] .fx-rain{
+    display:block;
+    background-image:
+      repeating-linear-gradient(101deg, transparent 0 9px, rgba(180,200,230,.10) 9px 10px),
+      repeating-linear-gradient(101deg, transparent 0 16px, rgba(170,190,225,.06) 16px 17px);
+    background-size:100% 220px, 100% 360px;
+    animation:rain .65s linear infinite;
+  }
+  @keyframes rain{ from{background-position:0 0, 0 0} to{background-position:0 220px, 0 360px} }
+  @media (prefers-reduced-motion: reduce){ [data-theme="dark"] .fx-rain{animation:none} }
+
+  .wrap{position:relative; z-index:1; max-width:680px; margin:0 auto; padding:28px 24px 96px}
   .langnav{display:flex; gap:6px; justify-content:flex-end; margin-bottom:28px}
   .langnav button{
     border:1px solid var(--line); background:transparent; color:var(--muted);
@@ -26,6 +66,7 @@
   .langnav button[aria-current="true"]{background:var(--fg); color:var(--bg); border-color:var(--fg)}
   header{margin-bottom:8px}
   .avatar{width:104px; height:104px; border-radius:50%; object-fit:cover; border:1px solid var(--line); display:block; margin:0 0 22px; background:var(--card)}
+  [data-theme="dark"] .avatar{box-shadow:0 0 0 1px rgba(255,122,60,.18), 0 10px 36px rgba(0,0,0,.55)}
   .eyebrow{font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 14px}
   h1{font-size:44px; line-height:1.05; margin:0 0 10px; font-weight:700; letter-spacing:-.02em}
   .namesub{font-size:15px; color:var(--muted); margin:0 0 20px}
@@ -46,13 +87,19 @@
   .contacts{list-style:none; padding:0; margin:0}
   .contacts li{padding:6px 0}
   .contacts .k{color:var(--muted); display:inline-block; min-width:84px}
-  a{color:var(--fg); text-underline-offset:3px}
+  a{color:var(--accent); text-underline-offset:3px}
   .note{color:var(--muted)}
   footer{margin-top:64px; padding-top:22px; border-top:1px solid var(--line); font-size:14px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px}
   .switch a{color:var(--muted)}
+  .switch a:hover{color:var(--accent)}
 </style>
 </head>
 <body>
+<div class="fx fx-photo"></div>
+<div class="fx fx-rain"></div>
+<div class="fx fx-vignette"></div>
+<div class="fx fx-grain"></div>
+
 <div class="wrap">
   <div class="langnav" id="langnav">
     <button data-lang="ru">РУ</button>
@@ -61,7 +108,7 @@
   </div>
 
   <header>
-    <img id="avatar" class="avatar" src="avatar.png" alt="" onerror="this.style.display='none'">
+    <img id="avatar" class="avatar" src="avatar.jpg" width="104" height="104" decoding="async" alt="" onerror="this.style.display='none'">
     <p class="eyebrow" id="eyebrow"></p>
     <h1 id="name"></h1>
     <p class="namesub" id="namesub"></p>
@@ -84,6 +131,8 @@
   <section><h2 id="spoken_h"></h2><ul class="tags" id="spoken"></ul></section>
 
   <section><h2 id="likes_h"></h2><ul class="facts" id="likes"></ul></section>
+
+  <section><h2 id="angry_h"></h2><ul class="facts" id="angry"></ul></section>
 
   <section><h2 id="facts_h"></h2><ul class="facts" id="facts"></ul></section>
 
@@ -134,6 +183,13 @@
         "Аниме.",
         "Музыку: The Beatles и AC/DC."
       ],
+      angry_h:"Что меня бесит",
+      angry:[
+        "Если коротко — в этом мире меня бесит примерно всё.",
+        "Пустые разговоры, лишь бы не молчать.",
+        "Когда восхищаются посредственностью и называют это успехом.",
+        "Люди, которым важнее казаться, чем быть."
+      ],
       facts_h:"Пара честных фактов",
       facts:[
         "Если я вам не отвечаю или отвечаю редко, это скорее всего потому, что мне на вас плевать. Ничего личного, просто так и есть.",
@@ -175,6 +231,13 @@
         "Anime.",
         "Music: The Beatles and AC/DC."
       ],
+      angry_h:"What pisses me off",
+      angry:[
+        "Short version: pretty much everything in this world pisses me off.",
+        "Empty talk just to avoid silence.",
+        "When mediocrity gets admired and called success.",
+        "People who care more about seeming than being."
+      ],
       facts_h:"A few honest facts",
       facts:[
         "If I don't reply, or reply rarely, it's most likely because I don't give a damn about you. Nothing personal, that's just how it is.",
@@ -215,6 +278,13 @@
         "读经济类的东西。马克思的《资本论》我反复读了好几遍。",
         "动漫。",
         "音乐：The Beatles 和 AC/DC。"
+      ],
+      angry_h:"让我火大的事",
+      angry:[
+        "简单说，这个世界几乎一切都让我火大。",
+        "为了不冷场而硬说的空话。",
+        "把平庸当成成功来吹捧。",
+        "在乎“看起来怎样”胜过“到底是谁”的人。"
       ],
       facts_h:"几句实话",
       facts:[
@@ -289,6 +359,9 @@
 
     document.getElementById("likes_h").textContent=t.likes_h;
     fill("likes", t.likes);
+
+    document.getElementById("angry_h").textContent=t.angry_h;
+    fill("angry", t.angry);
 
     document.getElementById("facts_h").textContent=t.facts_h;
     fill("facts", t.facts);
