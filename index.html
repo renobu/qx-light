@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!--
+  это сайт про меня. если ты копаешься в исходниках — тебе тоже скучно, привет.
+  писал сам, ночью, под дождём и сигарету. ну почти. фронт это не моё, я бэкендер,
+  так что если где-то криво — я знаю, мне плевать, оно работает.
+-->
 <html lang="ru" data-theme="light">
 <head>
 <meta charset="UTF-8">
@@ -19,6 +24,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
+  /* две темы. тёмная — настоящая, светлая — для тех кто боится темноты */
+  /* --accent оранжевый, как кончик бычка на фото. да, это метафора. да, я такой */
   [data-theme="light"]{--bg:#ffffff;--fg:#1a1a1a;--muted:#6b7280;--line:#e8e8e8;--card:#fafafa;--accent:#c2410c;--vignette:rgba(0,0,0,.05);--grain:.035}
   [data-theme="dark"]{--bg:#0f1115;--fg:#e8e8e8;--muted:#9aa0a6;--line:#23262d;--card:#161920;--accent:#ff7a3c;--vignette:rgba(0,0,0,.6);--grain:.06}
   *{box-sizing:border-box}
@@ -30,29 +37,34 @@
     line-height:1.7; font-size:17px; -webkit-font-smoothing:antialiased;
   }
 
-  /* atmosphere */
+  /* атмосфера. без неё это просто резюме, а с ней — настроение. чувствуешь? */
   .fx{position:fixed; inset:0; pointer-events:none; z-index:0}
   .fx-photo{display:none}
   .fx-rain{display:none}
+  /* виньетка: темнит по краям, чтобы было драматичненько. кино, а не сайт */
   .fx-vignette{background:radial-gradient(125% 125% at 50% 30%, transparent 48%, var(--vignette) 100%)}
+  /* зерно. пафос +100. накладные расходы 0. мой любимый тип сделки */
   .fx-grain{
     opacity:var(--grain);
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
+  /* моё лицо фоном, размытое в хлам. как и мои планы на выходные */
   [data-theme="dark"] .fx-photo{
     display:block;
     background:url("avatar.jpg") center 16% / cover no-repeat;
     opacity:.10; filter:blur(4px) grayscale(.25);
   }
+  /* дождь. да, я знаю что он мешал читать. прикрутил громкость, не благодари */
+  /* ближний слой — быстрый, дальний — медленный. это называется "глубина", я гуглил */
   [data-theme="dark"] .fx-rain{
-    display:block; opacity:.7;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='96'%3E%3Cg stroke='%23dbe6f7' stroke-width='1.4' stroke-linecap='round' stroke-opacity='0.6'%3E%3Cline x1='10' y1='2' x2='6' y2='48'/%3E%3Cline x1='30' y1='44' x2='26' y2='90'/%3E%3Cline x1='46' y1='10' x2='42' y2='56'/%3E%3Cline x1='60' y1='40' x2='56' y2='86'/%3E%3C/g%3E%3C/svg%3E");
+    display:block; opacity:.4;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='96'%3E%3Cg stroke='%23dbe6f7' stroke-width='1.2' stroke-linecap='round' stroke-opacity='0.5'%3E%3Cline x1='10' y1='2' x2='6' y2='48'/%3E%3Cline x1='30' y1='44' x2='26' y2='90'/%3E%3Cline x1='46' y1='10' x2='42' y2='56'/%3E%3Cline x1='60' y1='40' x2='56' y2='86'/%3E%3C/g%3E%3C/svg%3E");
     background-size:64px 96px;
     animation:rainA .6s linear infinite;
   }
   [data-theme="dark"] .fx-rain::after{
-    content:""; position:absolute; inset:0; opacity:.4;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='96'%3E%3Cg stroke='%23dbe6f7' stroke-width='1.4' stroke-linecap='round' stroke-opacity='0.6'%3E%3Cline x1='10' y1='2' x2='6' y2='48'/%3E%3Cline x1='30' y1='44' x2='26' y2='90'/%3E%3Cline x1='46' y1='10' x2='42' y2='56'/%3E%3Cline x1='60' y1='40' x2='56' y2='86'/%3E%3C/g%3E%3C/svg%3E");
+    content:""; position:absolute; inset:0; opacity:.22;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='96'%3E%3Cg stroke='%23dbe6f7' stroke-width='1.2' stroke-linecap='round' stroke-opacity='0.5'%3E%3Cline x1='10' y1='2' x2='6' y2='48'/%3E%3Cline x1='30' y1='44' x2='26' y2='90'/%3E%3Cline x1='46' y1='10' x2='42' y2='56'/%3E%3Cline x1='60' y1='40' x2='56' y2='86'/%3E%3C/g%3E%3C/svg%3E");
     background-size:96px 144px;
     animation:rainB 1.1s linear infinite;
   }
@@ -137,10 +149,12 @@
 
   <section><h2 id="likes_h"></h2><ul class="facts" id="likes"></ul></section>
 
+  <!-- любимый раздел. мог бы быть бесконечным, но сервер не резиновый -->
   <section><h2 id="angry_h"></h2><ul class="facts" id="angry"></ul></section>
 
   <section><h2 id="facts_h"></h2><ul class="facts" id="facts"></ul></section>
 
+  <!-- проекты приватные. нет, ссылку не дам. нет, и тебе тоже -->
   <section><h2 id="projects_h"></h2><p class="note" id="projects_p"></p></section>
 
   <section><h2 id="contacts_h"></h2><ul class="contacts" id="contacts"></ul></section>
@@ -153,13 +167,15 @@
 
 <script>
 (function(){
+  // мой стек. да, я знаю и больше. нет, я не буду всё перечислять, мне лень (см. ниже)
   var SKILLS = {
-    lang:  ["C#","Q#","Python","Java","PHP","JavaScript"],
+    lang:  ["C#","Q#","Python","Java","PHP","JavaScript"], // Q# тут пока авансом, но я серьёзно
     db:    ["PostgreSQL","MariaDB","Redis","Memcached"],
-    infra: ["Docker","Kubernetes"],
+    infra: ["Docker","Kubernetes"],                        // кубер ставил руками. один раз. больше не хочу
     bio:   ["Biopython","scikit-bio","BioJava","pandas","NumPy","scikit-learn","PyTorch","Q#"]
   };
 
+  // три языка, потому что я сложный. четвёртый (китайский) ещё учу, не подгоняйте
   var I18N = {
     ru: {
       htmlLang:"ru", title:"Портфолио", eyebrow:"Портфолио",
@@ -307,8 +323,9 @@
     }
   };
 
+  // считаю возраст сам, в рантайме. хардкодить число и обновлять его каждый год? я не настолько тебя люблю
   function age(){
-    var bd=new Date(2004,0,24), now=new Date();
+    var bd=new Date(2004,0,24), now=new Date(); // 24 января 2004. да, козерог. нет, я в это не верю
     var a=now.getFullYear()-bd.getFullYear();
     var m=now.getMonth()-bd.getMonth();
     if(m<0||(m===0&&now.getDate()<bd.getDate())) a--;
@@ -316,6 +333,7 @@
   }
   function year(){ return new Date().getFullYear(); }
 
+  // угадываю язык по устройству. угадал неправильно? кнопки сверху, разберёшься, ты же умный
   function detect(){
     var saved=null;
     try{ saved=localStorage.getItem("lang"); }catch(e){}
@@ -374,6 +392,7 @@
     document.getElementById("projects_h").textContent=t.projects_h;
     document.getElementById("projects_p").textContent=t.projects_p;
 
+    // контакты. писать можно. отвечу ли я — это уже лотерея (спойлер: см. "честные факты")
     document.getElementById("contacts_h").textContent=t.contacts_h;
     var cs=document.getElementById("contacts"); cs.innerHTML="";
     var c1=document.createElement("li");
@@ -406,6 +425,7 @@
     b.addEventListener("click", function(){ setLang(b.getAttribute("data-lang")); });
   });
 
+  // всё, рендер поехал. если ты дочитал комменты до конца — ты либо рекрутер, либо тебе так же одиноко. в обоих случаях привет
   render(detect());
 })();
 </script>
