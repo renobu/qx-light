@@ -3,121 +3,291 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Портфолио · Даниил</title>
-<meta name="description" content="Портфолио Даниила — backend-разработчик, генетика, ML.">
+<title>Портфолио</title>
+<meta name="description" content="Даниил / Daniel / 陈砚 — backend, генетика, ML, квантовые технологии.">
 <style>
-  :root{
-    --bg:#ffffff; --fg:#1a1a1a; --muted:#6b7280; --line:#e8e8e8;
-    --card:#fafafa; --accent:#1a1a1a;
-  }
+  [data-theme="light"]{--bg:#ffffff;--fg:#1a1a1a;--muted:#6b7280;--line:#e8e8e8;--card:#fafafa}
+  [data-theme="dark"]{--bg:#0f1115;--fg:#e8e8e8;--muted:#9aa0a6;--line:#23262d;--card:#161920}
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{
     margin:0; background:var(--bg); color:var(--fg);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.65; font-size:17px;
-    -webkit-font-smoothing:antialiased;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",Helvetica,Arial,sans-serif;
+    line-height:1.7; font-size:17px; -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:680px; margin:0 auto; padding:72px 24px 96px}
-  header{margin-bottom:48px}
-  .eyebrow{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:0 0 12px}
-  h1{font-size:40px; line-height:1.1; margin:0 0 14px; font-weight:700; letter-spacing:-.02em}
-  .role{font-size:18px; color:var(--muted); margin:0}
-  section{margin-top:48px}
-  h2{font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0 0 18px; font-weight:600}
-  p{margin:0 0 14px}
+  .wrap{max-width:680px; margin:0 auto; padding:28px 24px 96px}
+  .langnav{display:flex; gap:6px; justify-content:flex-end; margin-bottom:36px}
+  .langnav button{
+    border:1px solid var(--line); background:transparent; color:var(--muted);
+    border-radius:999px; padding:5px 13px; font-size:13px; cursor:pointer; font-family:inherit;
+    transition:.15s;
+  }
+  .langnav button:hover{color:var(--fg)}
+  .langnav button[aria-current="true"]{background:var(--fg); color:var(--bg); border-color:var(--fg)}
+  header{margin-bottom:8px}
+  .eyebrow{font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 14px}
+  h1{font-size:44px; line-height:1.05; margin:0 0 10px; font-weight:700; letter-spacing:-.02em}
+  .namesub{font-size:15px; color:var(--muted); margin:0 0 20px}
+  .role{font-size:19px; margin:0; line-height:1.5}
+  section{margin-top:46px}
+  h2{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:0 0 18px; font-weight:600}
+  p{margin:0 0 16px}
+  #about_body p:last-child{margin-bottom:0}
   .tags{display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:0}
-  .tags li{
-    border:1px solid var(--line); border-radius:999px; padding:6px 14px;
-    font-size:14px; background:var(--card);
-  }
-  .group{margin-bottom:20px}
-  .group .label{font-size:13px; color:var(--muted); margin:0 0 8px}
+  .tags li{border:1px solid var(--line); border-radius:999px; padding:6px 14px; font-size:14px; background:var(--card)}
+  .group{margin-bottom:22px}
+  .group:last-child{margin-bottom:0}
+  .group .label{font-size:13px; color:var(--muted); margin:0 0 9px}
   .facts{list-style:none; padding:0; margin:0}
-  .facts li{padding:10px 0; border-top:1px solid var(--line)}
-  .facts li:first-child{border-top:none}
+  .facts li{padding:13px 0; border-top:1px solid var(--line)}
+  .facts li:first-child{border-top:none; padding-top:0}
   .contacts{list-style:none; padding:0; margin:0}
   .contacts li{padding:6px 0}
+  .contacts .k{color:var(--muted); display:inline-block; min-width:84px}
   a{color:var(--fg); text-underline-offset:3px}
-  .note{color:var(--muted); font-size:15px}
-  footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--line); font-size:14px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px}
+  .note{color:var(--muted)}
+  footer{margin-top:64px; padding-top:22px; border-top:1px solid var(--line); font-size:14px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px}
   .switch a{color:var(--muted)}
 </style>
 </head>
 <body>
 <div class="wrap">
+  <div class="langnav" id="langnav">
+    <button data-lang="ru">РУ</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="zh">中文</button>
+  </div>
+
   <header>
-    <p class="eyebrow">Портфолио · Portfolio</p>
-    <h1>Даниил</h1>
-    <p class="role">Backend-разработчик. Увлекаюсь генетикой, ML и всеми остальными занудными вещами для других людей.</p>
+    <p class="eyebrow" id="eyebrow"></p>
+    <h1 id="name"></h1>
+    <p class="namesub" id="namesub"></p>
+    <p class="role" id="role"></p>
   </header>
 
-  <section>
-    <h2>О себе</h2>
-    <p>Меня зовут Даниил, мне <span id="age">22</span> года. Люблю кодить, мыслить о будущем и говорить о политике, технологиях и экономике — стараюсь поддержать практически любую тему.</p>
-  </section>
+  <section><h2 id="about_h"></h2><div id="about_body"></div></section>
+
+  <section><h2 id="focus_h"></h2><p id="focus_p"></p></section>
 
   <section>
-    <h2>Навыки</h2>
-    <div class="group">
-      <p class="label">Языки</p>
-      <ul class="tags">
-        <li>C#</li><li>Python</li><li>Java</li><li>PHP</li><li>JavaScript</li>
-      </ul>
-    </div>
-    <div class="group">
-      <p class="label">Базы данных и хранилища</p>
-      <ul class="tags">
-        <li>PostgreSQL</li><li>MariaDB</li><li>Redis</li>
-      </ul>
-    </div>
-    <div class="group">
-      <p class="label">Генетика и ML</p>
-      <ul class="tags">
-        <li>Biopython</li><li>scikit-bio</li><li>BioJava</li><li>pandas</li><li>NumPy</li><li>scikit-learn</li><li>PyTorch</li>
-      </ul>
-    </div>
+    <h2 id="skills_h"></h2>
+    <div class="group"><p class="label" id="lang_label"></p><ul class="tags" id="skills_lang"></ul></div>
+    <div class="group"><p class="label" id="db_label"></p><ul class="tags" id="skills_db"></ul></div>
+    <div class="group"><p class="label" id="bio_label"></p><ul class="tags" id="skills_bio"></ul></div>
   </section>
 
-  <section>
-    <h2>Немного фактов</h2>
-    <ul class="facts">
-      <li>Бэкенд — родная стихия: проектирование сервисов, API и работа с данными.</li>
-      <li>Интересуюсь биоинформатикой и генетикой — от анализа последовательностей до ML на биоданных.</li>
-      <li>Много думаю о будущем: технологии, экономика, политика — люблю обсуждать всё это.</li>
-      <li>Готов поддержать почти любой разговор и докопаться до сути «занудных» вещей.</li>
-    </ul>
-  </section>
+  <section><h2 id="spoken_h"></h2><ul class="tags" id="spoken"></ul></section>
 
-  <section>
-    <h2>Проекты</h2>
-    <p class="note">Проекты живут в приватных репозиториях — доступ закрыт.</p>
-  </section>
+  <section><h2 id="facts_h"></h2><ul class="facts" id="facts"></ul></section>
 
-  <section>
-    <h2>Контакты</h2>
-    <ul class="contacts">
-      <li>Email — <a href="mailto:y@qx.kg">y@qx.kg</a></li>
-      <li>WeChat — rnbone</li>
-    </ul>
-  </section>
+  <section><h2 id="projects_h"></h2><p class="note" id="projects_p"></p></section>
+
+  <section><h2 id="contacts_h"></h2><ul class="contacts" id="contacts"></ul></section>
 
   <footer>
-    <span>© <span id="year">2026</span> Даниил · qx.kg</span>
-    <span class="switch"><a href="https://b.qx.kg/">Тёмная тема →</a></span>
+    <span id="foot_rights"></span>
+    <span class="switch"><a id="themelink"></a></span>
   </footer>
 </div>
 
 <script>
-  (function(){
-    var bd = new Date(2004, 0, 24); // 24 января 2004
-    var now = new Date();
-    var age = now.getFullYear() - bd.getFullYear();
-    var m = now.getMonth() - bd.getMonth();
-    if (m < 0 || (m === 0 && now.getDate() < bd.getDate())) age--;
-    document.getElementById('age').textContent = age;
-    document.getElementById('year').textContent = now.getFullYear();
-  })();
+(function(){
+  var SKILLS = {
+    lang: ["C#","Q#","Python","Java","PHP","JavaScript"],
+    db:   ["PostgreSQL","MariaDB","Redis"],
+    bio:  ["Biopython","scikit-bio","BioJava","pandas","NumPy","scikit-learn","PyTorch","Q#"]
+  };
+
+  var I18N = {
+    ru: {
+      htmlLang:"ru", title:"Портфолио", eyebrow:"Портфолио",
+      name:"Даниил",
+      namesub:"По-английски Daniel, по-китайски 陈砚 (Chén Yàn).",
+      role:"Backend разработчик. Увлекаюсь генетикой, машинным обучением и всеми остальными занудными вещами, до которых у большинства людей просто не доходят руки.",
+      about_h:"О себе",
+      about:[
+        "Меня зовут Даниил, мне {age}. Пишу бэкенд, ковыряюсь в генетике и машинном обучении. Мне нравятся именно те дотошные, скучные на вид штуки, от которых большинство людей зевает, а я залипаю и теряю счёт времени.",
+        "Я гораздо больше думаю про будущее, чем оглядываюсь назад. Могу долго и с удовольствием говорить про технологии, экономику и политику, а под бутылку хорошего пойла спокойно уйду в философию до самого утра.",
+        "Сейчас упрямо учу китайский. Медленно, с ошибками, иногда через злость на самого себя, но бросать не собираюсь."
+      ],
+      focus_h:"Куда смотрю",
+      focus_p:"Хочу плотно заняться Q# и квантовыми технологиями. Мне кажется, это одно из немногих направлений, ради которого реально стоит напрягаться, и я хочу быть в нём не сбоку наблюдателем, а внутри.",
+      skills_h:"Навыки",
+      lang_label:"Языки программирования",
+      db_label:"Базы данных и хранилища",
+      bio_label:"Генетика, ML и квант",
+      spoken_h:"Языки общения",
+      spoken:["Русский (родной)","English","中文 (учу)"],
+      facts_h:"Пара честных фактов",
+      facts:[
+        "Если вы меня где-то добавили, а я молчу, скорее всего мне просто всё равно. Это не высокомерие, я честно так живу.",
+        "За бутылкой хорошего пойла готов разговаривать о философии часами.",
+        "Бэкенд для меня это не просто работа, а способ наводить порядок в хаосе.",
+        "Верю в будущее сильнее, чем ною про настоящее."
+      ],
+      projects_h:"Проекты",
+      projects_p:"Лежат в приватных репозиториях. Доступ не даю никому, не обижайтесь.",
+      contacts_h:"Контакты",
+      emailK:"Почта", wechatK:"WeChat",
+      rights:"© {year} Даниил",
+      toDark:"Тёмная тема", toLight:"Светлая тема"
+    },
+    en: {
+      htmlLang:"en", title:"Portfolio", eyebrow:"Portfolio",
+      name:"Daniel",
+      namesub:"Даниил in Russian, 陈砚 (Chén Yàn) in Chinese.",
+      role:"Backend developer. Into genetics, machine learning, and all the other nerdy things most people simply can't be bothered with.",
+      about_h:"About",
+      about:[
+        "My name is Daniel, I'm {age}. I write backend code and dig into genetics and machine learning. I genuinely enjoy the finicky, boring-looking stuff that makes most people yawn, while I lose track of time over it.",
+        "I think about the future far more than I look back. I can talk for hours about technology, economics and politics, and over a bottle of something good I'll happily drift into philosophy until sunrise.",
+        "Right now I'm stubbornly learning Chinese. Slowly, with mistakes, sometimes annoyed at myself, but I'm not quitting."
+      ],
+      focus_h:"Where I'm headed",
+      focus_p:"I want to go deep into Q# and quantum technologies. It feels like one of the few directions actually worth the effort, and I'd rather be inside it than watching from the side.",
+      skills_h:"Skills",
+      lang_label:"Programming languages",
+      db_label:"Databases and storage",
+      bio_label:"Genetics, ML and quantum",
+      spoken_h:"Spoken languages",
+      spoken:["Russian (native)","English","中文 (learning)"],
+      facts_h:"A few honest facts",
+      facts:[
+        "If you added me somewhere and I go quiet, chances are I just don't care. It's not arrogance, that's honestly how I live.",
+        "Over a bottle of something good I'll talk philosophy for hours.",
+        "Backend isn't just a job to me, it's a way of putting order into chaos.",
+        "I believe in the future more than I complain about the present."
+      ],
+      projects_h:"Projects",
+      projects_p:"They live in private repositories. I don't hand out access to anyone, no offense.",
+      contacts_h:"Contacts",
+      emailK:"Email", wechatK:"WeChat",
+      rights:"© {year} Daniel",
+      toDark:"Dark theme", toLight:"Light theme"
+    },
+    zh: {
+      htmlLang:"zh", title:"作品集", eyebrow:"作品集",
+      name:"陈砚",
+      namesub:"俄语叫 Даниил，英文叫 Daniel。",
+      role:"后端开发者。喜欢遗传学、机器学习，以及其他大多数人懒得碰的枯燥东西。",
+      about_h:"关于我",
+      about:[
+        "我叫陈砚，今年{age}岁。我写后端，也钻研遗传学和机器学习。那些让大多数人犯困的繁琐细节，我反而越看越上头，常常忘了时间。",
+        "比起回头看过去，我更愿意思考未来。我可以聊上几个小时的技术、经济和政治，要是再来一瓶好酒，我能从哲学一直聊到天亮。",
+        "我现在很倔强地学中文，进度慢、错误多，有时候还会对自己生气，但我不打算放弃。"
+      ],
+      focus_h:"我想去的方向",
+      focus_p:"我想深入研究 Q# 和量子技术。我觉得这是少数几个值得认真投入的方向，我不想只在旁边看，而是要真正走进去。",
+      skills_h:"技能",
+      lang_label:"编程语言",
+      db_label:"数据库与存储",
+      bio_label:"遗传学、机器学习与量子",
+      spoken_h:"使用的语言",
+      spoken:["俄语（母语）","English","中文（学习中）"],
+      facts_h:"几句实话",
+      facts:[
+        "如果你在哪里加了我，我却不回复，那多半是我真的不在意。不是傲慢，我就是这么活着。",
+        "只要有一瓶好酒，我可以聊哲学聊上好几个小时。",
+        "后端对我来说不只是工作，更是把混乱整理成秩序的方式。",
+        "我相信未来，胜过抱怨当下。"
+      ],
+      projects_h:"项目",
+      projects_p:"都放在私有仓库里，不对任何人开放，请别介意。",
+      contacts_h:"联系方式",
+      emailK:"邮箱", wechatK:"微信",
+      rights:"© {year} 陈砚",
+      toDark:"深色主题", toLight:"浅色主题"
+    }
+  };
+
+  function age(){
+    var bd=new Date(2004,0,24), now=new Date();
+    var a=now.getFullYear()-bd.getFullYear();
+    var m=now.getMonth()-bd.getMonth();
+    if(m<0||(m===0&&now.getDate()<bd.getDate())) a--;
+    return a;
+  }
+  function year(){ return new Date().getFullYear(); }
+
+  function detect(){
+    var saved=null;
+    try{ saved=localStorage.getItem("lang"); }catch(e){}
+    if(saved&&I18N[saved]) return saved;
+    var l=(navigator.language||navigator.userLanguage||"en").toLowerCase();
+    if(l.indexOf("ru")===0) return "ru";
+    if(l.indexOf("zh")===0) return "zh";
+    return "en";
+  }
+
+  function tags(id, arr){
+    var el=document.getElementById(id); el.innerHTML="";
+    arr.forEach(function(t){ var li=document.createElement("li"); li.textContent=t; el.appendChild(li); });
+  }
+
+  function render(lang){
+    var t=I18N[lang], A=age(), Y=year();
+    document.documentElement.setAttribute("lang", t.htmlLang);
+    document.title=t.title;
+    document.getElementById("eyebrow").textContent=t.eyebrow;
+    document.getElementById("name").textContent=t.name;
+    document.getElementById("namesub").textContent=t.namesub;
+    document.getElementById("role").textContent=t.role;
+
+    document.getElementById("about_h").textContent=t.about_h;
+    var ab=document.getElementById("about_body"); ab.innerHTML="";
+    t.about.forEach(function(p){ var el=document.createElement("p"); el.textContent=p.replace("{age}",A); ab.appendChild(el); });
+
+    document.getElementById("focus_h").textContent=t.focus_h;
+    document.getElementById("focus_p").textContent=t.focus_p;
+
+    document.getElementById("skills_h").textContent=t.skills_h;
+    document.getElementById("lang_label").textContent=t.lang_label;
+    document.getElementById("db_label").textContent=t.db_label;
+    document.getElementById("bio_label").textContent=t.bio_label;
+    tags("skills_lang", SKILLS.lang);
+    tags("skills_db", SKILLS.db);
+    tags("skills_bio", SKILLS.bio);
+
+    document.getElementById("spoken_h").textContent=t.spoken_h;
+    tags("spoken", t.spoken);
+
+    document.getElementById("facts_h").textContent=t.facts_h;
+    var fl=document.getElementById("facts"); fl.innerHTML="";
+    t.facts.forEach(function(f){ var li=document.createElement("li"); li.textContent=f; fl.appendChild(li); });
+
+    document.getElementById("projects_h").textContent=t.projects_h;
+    document.getElementById("projects_p").textContent=t.projects_p;
+
+    document.getElementById("contacts_h").textContent=t.contacts_h;
+    var cs=document.getElementById("contacts"); cs.innerHTML="";
+    var c1=document.createElement("li");
+    c1.innerHTML='<span class="k">'+t.emailK+'</span><a href="mailto:y@qx.kg">y@qx.kg</a>';
+    var c2=document.createElement("li");
+    c2.innerHTML='<span class="k">'+t.wechatK+'</span>rnbone';
+    cs.appendChild(c1); cs.appendChild(c2);
+
+    document.getElementById("foot_rights").textContent=t.rights.replace("{year}",Y);
+
+    var theme=document.documentElement.getAttribute("data-theme");
+    var link=document.getElementById("themelink");
+    if(theme==="light"){ link.textContent=t.toDark+" →"; link.href="https://b.qx.kg/"; }
+    else { link.textContent=t.toLight+" →"; link.href="https://a.qx.kg/"; }
+
+    var btns=document.querySelectorAll(".langnav button");
+    btns.forEach(function(b){ b.setAttribute("aria-current", b.getAttribute("data-lang")===lang ? "true":"false"); });
+  }
+
+  function setLang(lang){
+    try{ localStorage.setItem("lang", lang); }catch(e){}
+    render(lang);
+  }
+
+  document.querySelectorAll(".langnav button").forEach(function(b){
+    b.addEventListener("click", function(){ setLang(b.getAttribute("data-lang")); });
+  });
+
+  render(detect());
+})();
 </script>
 </body>
 </html>
