@@ -3,6 +3,7 @@
   это сайт про меня. если ты копаешься в исходниках, тебе тоже скучно, привет.
   писал сам, ночью, под дождём и сигарету. ну почти. фронт это не моё, я бэкендер,
   так что если где-то криво, я знаю, мне плевать, оно работает.
+  версия сайта живёт в VERSION ниже. история изменений в CHANGELOG.md
 -->
 <html lang="ru" data-theme="light">
 <head>
@@ -10,9 +11,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Портфолио</title>
 <meta name="description" content="Даниил / Daniel / 陈砚. Backend, генетика, ML, квантовые технологии. И немного злости на мир.">
-<meta name="theme-color" content="#0f1115">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://qx.kg/">
+<meta name="theme-color" content="#08090c">
+<link rel="canonical" href="https://a.qx.kg/">
+<!-- три языка на трёх адресах, чтобы поисковик не думал что это три разных сайта -->
+<link rel="alternate" hreflang="ru" href="https://a.qx.kg/?lang=ru">
+<link rel="alternate" hreflang="en" href="https://a.qx.kg/?lang=en">
+<link rel="alternate" hreflang="zh" href="https://a.qx.kg/?lang=zh">
+<link rel="alternate" hreflang="x-default" href="https://a.qx.kg/">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://a.qx.kg/">
 <meta property="og:title" content="Даниил / Daniel / 陈砚">
 <meta property="og:description" content="Backend, генетика, ML, квантовые технологии. И немного злости на мир.">
 <meta property="og:image" content="https://a.qx.kg/og.jpg">
@@ -23,11 +30,27 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- structured data, чтобы гугл понимал что я человек, а не сборник тегов -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Person",
+  "name":"Даниил",
+  "alternateName":["Daniel","陈砚"],
+  "jobTitle":"Backend developer",
+  "email":"mailto:y@qx.kg",
+  "url":"https://qx.kg/",
+  "image":"https://a.qx.kg/og.jpg",
+  "knowsLanguage":["ru","en","zh"],
+  "knowsAbout":["Backend development","C#","Python","PostgreSQL","Redis","Docker","Machine learning","Bioinformatics","Quantum computing","Q#"]
+}
+</script>
 <style>
   /* две темы. тёмная настоящая, светлая для тех кто боится темноты */
   /* --accent оранжевый, как кончик бычка на фото. да, это метафора. да, я такой */
-  [data-theme="light"]{--bg:#ffffff;--fg:#1a1a1a;--muted:#6b7280;--line:#e8e8e8;--card:#fafafa;--accent:#c2410c;--vignette:rgba(0,0,0,.05);--grain:.035}
-  [data-theme="dark"]{--bg:#08090c;--fg:#dfe1e4;--muted:#82868e;--line:#1a1d23;--card:#0e1013;--accent:#f4702f;--vignette:rgba(0,0,0,.78);--grain:.07}
+  [data-theme="light"]{--bg:#ffffff;--fg:#1a1a1a;--muted:#5c626c;--line:#e8e8e8;--card:#fafafa;--accent:#b83c08;--vignette:rgba(0,0,0,.05);--grain:.035}
+  /* --muted подняли до #9aa1ac: контраст 7.6:1 на почти чёрном. читаемость важнее мрака */
+  [data-theme="dark"]{--bg:#08090c;--fg:#dfe1e4;--muted:#9aa1ac;--line:#1a1d23;--card:#0e1013;--accent:#f4702f;--vignette:rgba(0,0,0,.78);--grain:.07}
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{
@@ -70,7 +93,6 @@
   }
   @keyframes rainA{ from{background-position:0 0} to{background-position:-80px 480px} }
   @keyframes rainB{ from{background-position:0 0} to{background-position:-120px 720px} }
-  @media (prefers-reduced-motion: reduce){ [data-theme="dark"] .fx-rain, [data-theme="dark"] .fx-rain::after{animation:none} }
 
   .wrap{position:relative; z-index:1; max-width:680px; margin:0 auto; padding:28px 24px 96px}
   .langnav{display:flex; gap:6px; justify-content:flex-end; margin-bottom:28px}
@@ -83,7 +105,6 @@
   .langnav button[aria-current="true"]{background:var(--fg); color:var(--bg); border-color:var(--fg)}
   header{margin-bottom:8px}
   .avatar{width:104px; height:104px; border-radius:50%; object-fit:cover; border:1px solid var(--line); display:block; margin:0 0 22px; background:var(--card)}
-  [data-theme="dark"] .avatar{box-shadow:0 0 0 1px rgba(255,122,60,.18), 0 10px 36px rgba(0,0,0,.55)}
   .eyebrow{font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 14px}
   h1{font-size:44px; line-height:1.05; margin:0 0 10px; font-weight:700; letter-spacing:-.02em}
   .namesub{font-size:15px; color:var(--muted); margin:0 0 20px}
@@ -98,6 +119,10 @@
   .group:last-child{margin-bottom:0}
   .group .label{font-size:13px; color:var(--muted); margin:0 0 9px}
   .more{color:var(--muted); font-size:14px; margin:18px 0 0}
+  /* "где применял": пара строк вместо гадания по облаку тегов */
+  .usage{list-style:none; padding:0; margin:22px 0 0; font-size:15px}
+  .usage li{padding:7px 0; color:var(--muted)}
+  .usage .u-k{color:var(--fg); font-weight:600; margin-right:8px}
   .facts{list-style:none; padding:0; margin:0}
   .facts li{padding:13px 0; border-top:1px solid var(--line)}
   .facts li:first-child{border-top:none; padding-top:0}
@@ -107,6 +132,7 @@
   a{color:var(--accent); text-underline-offset:3px}
   .note{color:var(--muted)}
   footer{margin-top:64px; padding-top:22px; border-top:1px solid var(--line); font-size:14px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px}
+  .ver{opacity:.75}
   .switch a{color:var(--muted)}
   .switch a:hover{color:var(--accent)}
 
@@ -125,11 +151,21 @@
   [data-theme="dark"] .eyebrow{color:var(--accent); opacity:.85}
   /* имя слегка светится в темноте */
   [data-theme="dark"] h1{text-shadow:0 1px 30px rgba(223,225,228,.07)}
-  /* тлеющая точка перед каждым заголовком */
+  /* тлеющая точка перед каждым заголовком. дышит, как затяжка */
   [data-theme="dark"] h2::before{
     content:""; display:inline-block; width:5px; height:5px; border-radius:50%;
     background:var(--accent); margin-right:9px; vertical-align:middle;
-    box-shadow:0 0 8px rgba(244,112,47,.6); opacity:.85;
+    animation:ember 4.2s ease-in-out infinite;
+  }
+  @keyframes ember{
+    0%,100%{opacity:.7;  box-shadow:0 0 6px rgba(244,112,47,.45)}
+    50%    {opacity:1;   box-shadow:0 0 14px rgba(244,112,47,.9)}
+  }
+  /* фото тоже еле заметно дышит тёплым */
+  [data-theme="dark"] .avatar{animation:emberGlow 6s ease-in-out infinite}
+  @keyframes emberGlow{
+    0%,100%{box-shadow:0 0 0 1px rgba(244,112,47,.14), 0 10px 36px rgba(0,0,0,.55)}
+    50%    {box-shadow:0 0 0 1px rgba(244,112,47,.32), 0 10px 44px rgba(0,0,0,.62)}
   }
   /* теги загораются акцентом при наведении */
   [data-theme="dark"] .tags li:hover{border-color:var(--accent); color:#fff}
@@ -139,6 +175,14 @@
   [data-theme="dark"]::-webkit-scrollbar-track{background:transparent}
   [data-theme="dark"]::-webkit-scrollbar-thumb{background:#20242b; border-radius:6px; border:2px solid #08090c}
   [data-theme="dark"]::-webkit-scrollbar-thumb:hover{background:#2c313a}
+
+  /* кому анимации мешают, тому тишина */
+  @media (prefers-reduced-motion: reduce){
+    [data-theme="dark"] .fx-rain,
+    [data-theme="dark"] .fx-rain::after,
+    [data-theme="dark"] h2::before,
+    [data-theme="dark"] .avatar{animation:none}
+  }
 </style>
 </head>
 <body>
@@ -166,12 +210,13 @@
 
   <section><h2 id="focus_h"></h2><p id="focus_p"></p></section>
 
+  <!-- навыки честно разложены по уровням, а не свалены в одну кучу -->
   <section>
     <h2 id="skills_h"></h2>
-    <div class="group"><p class="label" id="lang_label"></p><ul class="tags" id="skills_lang"></ul></div>
-    <div class="group"><p class="label" id="db_label"></p><ul class="tags" id="skills_db"></ul></div>
-    <div class="group"><p class="label" id="infra_label"></p><ul class="tags" id="skills_infra"></ul></div>
-    <div class="group"><p class="label" id="bio_label"></p><ul class="tags" id="skills_bio"></ul></div>
+    <div class="group"><p class="label" id="l1_label"></p><ul class="tags" id="skills_l1"></ul></div>
+    <div class="group"><p class="label" id="l2_label"></p><ul class="tags" id="skills_l2"></ul></div>
+    <div class="group"><p class="label" id="l3_label"></p><ul class="tags" id="skills_l3"></ul></div>
+    <ul class="usage" id="usage"></ul>
     <p class="more" id="skills_more"></p>
   </section>
 
@@ -190,19 +235,21 @@
   <section><h2 id="contacts_h"></h2><ul class="contacts" id="contacts"></ul></section>
 
   <footer>
-    <span id="foot_rights"></span>
+    <span><span id="foot_rights"></span> <span class="ver" id="foot_ver"></span></span>
     <span class="switch"><a id="themelink"></a></span>
   </footer>
 </div>
 
 <script>
 (function(){
-  // мой стек. да, я знаю и больше. нет, я не буду всё перечислять, мне лень (см. ниже)
+  // версия сайта. меняется руками, история в CHANGELOG.md. без сборщиков, я не мазохист
+  var VERSION = "1.0.0";
+
+  // мой стек, разложенный по честности: что умею, что трогал, что только учу
   var SKILLS = {
-    lang:  ["C#","Q#","Python","Java","PHP","JavaScript"], // Q# тут пока авансом, но я серьёзно
-    db:    ["PostgreSQL","MariaDB","Redis","Memcached"],
-    infra: ["Docker","Kubernetes"],                        // кубер ставил руками. один раз. больше не хочу
-    bio:   ["Biopython","scikit-bio","BioJava","pandas","NumPy","scikit-learn","PyTorch","Q#"]
+    l1: ["C#","Python","Java","PHP","JavaScript","PostgreSQL","MariaDB","Redis","Memcached"],
+    l2: ["Docker","Kubernetes","pandas","NumPy","scikit-learn","PyTorch","Biopython","scikit-bio","BioJava"],
+    l3: ["Q#"] // остальное в l3 приезжает переводом, см. I18N.learning
   };
 
   // три языка, потому что я сложный. четвёртый (китайский) ещё учу, не подгоняйте
@@ -221,10 +268,15 @@
       focus_h:"Куда смотрю",
       focus_p:"Хочу плотно заняться Q# и квантовыми технологиями. Мне кажется, это одно из немногих направлений, ради которого реально стоит напрягаться, и я хочу быть в нём не сбоку наблюдателем, а внутри.",
       skills_h:"Навыки",
-      lang_label:"Языки программирования",
-      db_label:"Базы данных и хранилища",
-      infra_label:"Инфраструктура",
-      bio_label:"Генетика, ML и квант",
+      l1_label:"Уверенно",
+      l2_label:"Трогал руками",
+      l3_label:"Изучаю",
+      learning:["Квантовые вычисления"],
+      usage:[
+        ["C#","основной язык, на нём пишу сервисы и всё серьёзное."],
+        ["Python","бэкенд, скрипты, ML и всё, что надо быстро посчитать."],
+        ["PostgreSQL","основная база в проектах, сверху Redis для кеша."]
+      ],
       skills_more:"И ещё куча всего, просто лень перечислять дальше.",
       spoken_h:"Языки общения",
       spoken:["Русский (родной)","English","中文 (учу)"],
@@ -246,6 +298,7 @@
       facts_h:"Пара честных фактов",
       facts:[
         "Если я вам не отвечаю или отвечаю редко, это скорее всего потому, что мне на вас плевать. Ничего личного, просто так и есть.",
+        "Исключение: интересные задачи по бэкенду, квантам или биоинформатике. На такие пишите смело, отвечу.",
         "Выгляжу очень по-разному. Могу быть пиздец каким красивым, а могу и совсем непривлекательным. Зависит только от меня.",
         "За бутылкой хорошего пойла готов разговаривать о философии часами.",
         "Бэкенд для меня это не просто работа, а способ наводить порядок в хаосе."
@@ -253,9 +306,14 @@
       projects_h:"Проекты",
       projects_p:"Лежат в приватных репозиториях. Доступ не даю никому, не обижайтесь.",
       contacts_h:"Контакты",
-      emailK:"Почта", wechatK:"WeChat",
+      emailK:"Почта", wechatK:"WeChat", cvK:"Резюме",
+      cvText:"Скачать PDF", cvFile:"cv-ru.pdf",
       rights:"© {year} Даниил",
-      toDark:"Тёмная тема", toLight:"Светлая тема"
+      toDark:"Тёмная тема", toLight:"Светлая тема",
+      // пасхалка для тех, кто полез в DevTools
+      egg1:"ты открыл консоль. значит не такой уж и скучный.",
+      egg2:"портфолио v{v}. писал сам, ночью. баги тоже мои.",
+      egg3:"нашёл что-то интересное? y@qx.kg. на интересное я отвечаю."
     },
     en: {
       htmlLang:"en", title:"Portfolio", eyebrow:"Portfolio",
@@ -271,10 +329,15 @@
       focus_h:"Where I'm headed",
       focus_p:"I want to go deep into Q# and quantum technologies. It feels like one of the few directions actually worth the effort, and I'd rather be inside it than watching from the side.",
       skills_h:"Skills",
-      lang_label:"Programming languages",
-      db_label:"Databases and storage",
-      infra_label:"Infrastructure",
-      bio_label:"Genetics, ML and quantum",
+      l1_label:"Confident",
+      l2_label:"Hands-on",
+      l3_label:"Learning",
+      learning:["Quantum computing"],
+      usage:[
+        ["C#","my main language, services and anything serious."],
+        ["Python","backend, scripts, ML and anything I need to crunch fast."],
+        ["PostgreSQL","the default database in my projects, Redis on top for caching."]
+      ],
       skills_more:"And a whole lot more, I'm just too lazy to keep listing.",
       spoken_h:"Spoken languages",
       spoken:["Russian (native)","English","中文 (learning)"],
@@ -296,6 +359,7 @@
       facts_h:"A few honest facts",
       facts:[
         "If I don't reply, or reply rarely, it's most likely because I don't give a damn about you. Nothing personal, that's just how it is.",
+        "Exception: interesting backend, quantum or bioinformatics problems. Write about those and I will answer.",
         "I look very different from day to day. I can be ridiculously good-looking, or not attractive at all. It depends entirely on me.",
         "Over a bottle of something good I'll talk philosophy for hours.",
         "Backend isn't just a job to me, it's a way of putting order into chaos."
@@ -303,9 +367,13 @@
       projects_h:"Projects",
       projects_p:"They live in private repositories. I don't hand out access to anyone, no offense.",
       contacts_h:"Contacts",
-      emailK:"Email", wechatK:"WeChat",
+      emailK:"Email", wechatK:"WeChat", cvK:"Resume",
+      cvText:"Download PDF", cvFile:"cv-en.pdf",
       rights:"© {year} Daniel",
-      toDark:"Dark theme", toLight:"Light theme"
+      toDark:"Dark theme", toLight:"Light theme",
+      egg1:"you opened the console. so you're not that boring after all.",
+      egg2:"portfolio v{v}. wrote it myself, at night. the bugs are mine too.",
+      egg3:"found something interesting? y@qx.kg. interesting gets an answer."
     },
     zh: {
       htmlLang:"zh", title:"作品集", eyebrow:"作品集",
@@ -321,10 +389,15 @@
       focus_h:"我想去的方向",
       focus_p:"我想深入研究 Q# 和量子技术。我觉得这是少数几个值得认真投入的方向，我不想只在旁边看，而是要真正走进去。",
       skills_h:"技能",
-      lang_label:"编程语言",
-      db_label:"数据库与存储",
-      infra_label:"基础设施",
-      bio_label:"遗传学、机器学习与量子",
+      l1_label:"熟练",
+      l2_label:"用过",
+      l3_label:"学习中",
+      learning:["量子计算"],
+      usage:[
+        ["C#","主力语言，服务端和正经项目都用它。"],
+        ["Python","后端、脚本、机器学习，需要快速算的都用它。"],
+        ["PostgreSQL","项目里的主数据库，上面再加 Redis 做缓存。"]
+      ],
       skills_more:"还有一大堆，懒得再往下列了。",
       spoken_h:"使用的语言",
       spoken:["俄语（母语）","English","中文（学习中）"],
@@ -346,6 +419,7 @@
       facts_h:"几句实话",
       facts:[
         "如果我不回你，或者很少回，那多半是因为我根本不在乎你。没有恶意，事情就是这样。",
+        "例外：有意思的后端、量子或生物信息学问题。这种尽管写给我，我一定回。",
         "我每天看起来都很不一样。可以帅得一塌糊涂，也可以毫无吸引力，全看我自己。",
         "只要有一瓶好酒，我可以聊哲学聊上好几个小时。",
         "后端对我来说不只是工作，更是把混乱整理成秩序的方式。"
@@ -353,9 +427,13 @@
       projects_h:"项目",
       projects_p:"都放在私有仓库里，不对任何人开放，请别介意。",
       contacts_h:"联系方式",
-      emailK:"邮箱", wechatK:"微信",
+      emailK:"邮箱", wechatK:"微信", cvK:"简历",
+      cvText:"下载 PDF", cvFile:"cv-en.pdf",
       rights:"© {year} 陈砚",
-      toDark:"深色主题", toLight:"浅色主题"
+      toDark:"深色主题", toLight:"浅色主题",
+      egg1:"你打开了控制台，看来你也没那么无聊。",
+      egg2:"作品集 v{v}。自己写的，深夜写的。bug 也是我的。",
+      egg3:"发现有意思的东西了？y@qx.kg。有意思的我一定回。"
     }
   };
 
@@ -369,8 +447,11 @@
   }
   function year(){ return new Date().getFullYear(); }
 
-  // угадываю язык по устройству. угадал неправильно? кнопки сверху, разберёшься, ты же умный
+  // угадываю язык: сначала ?lang= в адресе, потом что выбрал раньше, потом язык устройства
   function detect(){
+    var q=null;
+    try{ q=new URLSearchParams(location.search).get("lang"); }catch(e){}
+    if(q&&I18N[q]) return q;
     var saved=null;
     try{ saved=localStorage.getItem("lang"); }catch(e){}
     if(saved&&I18N[saved]) return saved;
@@ -403,15 +484,22 @@
     document.getElementById("focus_p").textContent=t.focus_p;
 
     document.getElementById("skills_h").textContent=t.skills_h;
-    document.getElementById("lang_label").textContent=t.lang_label;
-    document.getElementById("db_label").textContent=t.db_label;
-    document.getElementById("infra_label").textContent=t.infra_label;
-    document.getElementById("bio_label").textContent=t.bio_label;
+    document.getElementById("l1_label").textContent=t.l1_label;
+    document.getElementById("l2_label").textContent=t.l2_label;
+    document.getElementById("l3_label").textContent=t.l3_label;
+    fill("skills_l1", SKILLS.l1);
+    fill("skills_l2", SKILLS.l2);
+    fill("skills_l3", SKILLS.l3.concat(t.learning));
+
+    // "где применял": ключ жирным, дальше человеческим языком
+    var us=document.getElementById("usage"); us.innerHTML="";
+    t.usage.forEach(function(pair){
+      var li=document.createElement("li");
+      var k=document.createElement("span"); k.className="u-k"; k.textContent=pair[0];
+      li.appendChild(k); li.appendChild(document.createTextNode(pair[1]));
+      us.appendChild(li);
+    });
     document.getElementById("skills_more").textContent=t.skills_more;
-    fill("skills_lang", SKILLS.lang);
-    fill("skills_db", SKILLS.db);
-    fill("skills_infra", SKILLS.infra);
-    fill("skills_bio", SKILLS.bio);
 
     document.getElementById("spoken_h").textContent=t.spoken_h;
     fill("spoken", t.spoken);
@@ -429,19 +517,22 @@
     document.getElementById("projects_h").textContent=t.projects_h;
     document.getElementById("projects_p").textContent=t.projects_p;
 
-    // контакты. писать можно. отвечу ли я, это уже лотерея (спойлер: см. "честные факты")
+    // контакты. писать можно. отвечу ли я, зависит от того, насколько интересно
     document.getElementById("contacts_h").textContent=t.contacts_h;
     var cs=document.getElementById("contacts"); cs.innerHTML="";
-    var c1=document.createElement("li");
-    c1.innerHTML='<span class="k"></span><a href="mailto:y@qx.kg">y@qx.kg</a>';
-    c1.querySelector(".k").textContent=t.emailK;
-    var c2=document.createElement("li");
-    c2.innerHTML='<span class="k"></span>';
-    c2.querySelector(".k").textContent=t.wechatK;
-    c2.appendChild(document.createTextNode("rnbone"));
-    cs.appendChild(c1); cs.appendChild(c2);
+    function row(key, node){
+      var li=document.createElement("li");
+      var k=document.createElement("span"); k.className="k"; k.textContent=key;
+      li.appendChild(k); li.appendChild(node); cs.appendChild(li);
+    }
+    var mail=document.createElement("a"); mail.href="mailto:y@qx.kg"; mail.textContent="y@qx.kg";
+    row(t.emailK, mail);
+    row(t.wechatK, document.createTextNode("rnbone"));
+    var cv=document.createElement("a"); cv.href=t.cvFile; cv.textContent=t.cvText; cv.setAttribute("download","");
+    row(t.cvK, cv);
 
     document.getElementById("foot_rights").textContent=t.rights.replace("{year}",Y);
+    document.getElementById("foot_ver").textContent="v"+VERSION;
 
     var theme=document.documentElement.getAttribute("data-theme");
     var link=document.getElementById("themelink");
@@ -455,6 +546,8 @@
 
   function setLang(lang){
     try{ localStorage.setItem("lang", lang); }catch(e){}
+    // язык уезжает в адрес, чтобы ссылкой можно было поделиться сразу на нужном
+    try{ history.replaceState(null,"","?lang="+lang); }catch(e){}
     render(lang);
   }
 
@@ -462,8 +555,18 @@
     b.addEventListener("click", function(){ setLang(b.getAttribute("data-lang")); });
   });
 
+  var initial=detect();
+  render(initial);
+
+  // привет тем, кто полез в DevTools. таких мало, вы мне нравитесь
+  try{
+    var e=I18N[initial];
+    console.log("%c"+e.egg1, "color:#f4702f;font-size:14px;font-weight:600");
+    console.log("%c"+e.egg2.replace("{v}",VERSION), "color:#9aa1ac");
+    console.log("%c"+e.egg3, "color:#9aa1ac");
+  }catch(_){}
+
   // всё, рендер поехал. если ты дочитал комменты до конца, ты либо рекрутер, либо тебе так же одиноко. в обоих случаях привет
-  render(detect());
 })();
 </script>
 </body>
