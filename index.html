@@ -306,8 +306,7 @@
       projects_h:"Проекты",
       projects_p:"Лежат в приватных репозиториях. Доступ не даю никому, не обижайтесь.",
       contacts_h:"Контакты",
-      emailK:"Почта", wechatK:"WeChat", cvK:"Резюме",
-      cvText:"Скачать PDF", cvFile:"cv-ru.pdf",
+      emailK:"Почта", wechatK:"WeChat",
       rights:"© {year} Даниил",
       toDark:"Тёмная тема", toLight:"Светлая тема",
       // пасхалка для тех, кто полез в DevTools
@@ -367,8 +366,7 @@
       projects_h:"Projects",
       projects_p:"They live in private repositories. I don't hand out access to anyone, no offense.",
       contacts_h:"Contacts",
-      emailK:"Email", wechatK:"WeChat", cvK:"Resume",
-      cvText:"Download PDF", cvFile:"cv-en.pdf",
+      emailK:"Email", wechatK:"WeChat",
       rights:"© {year} Daniel",
       toDark:"Dark theme", toLight:"Light theme",
       egg1:"you opened the console. so you're not that boring after all.",
@@ -427,8 +425,7 @@
       projects_h:"项目",
       projects_p:"都放在私有仓库里，不对任何人开放，请别介意。",
       contacts_h:"联系方式",
-      emailK:"邮箱", wechatK:"微信", cvK:"简历",
-      cvText:"下载 PDF", cvFile:"cv-en.pdf",
+      emailK:"邮箱", wechatK:"微信",
       rights:"© {year} 陈砚",
       toDark:"深色主题", toLight:"浅色主题",
       egg1:"你打开了控制台，看来你也没那么无聊。",
@@ -528,8 +525,6 @@
     var mail=document.createElement("a"); mail.href="mailto:y@qx.kg"; mail.textContent="y@qx.kg";
     row(t.emailK, mail);
     row(t.wechatK, document.createTextNode("rnbone"));
-    var cv=document.createElement("a"); cv.href=t.cvFile; cv.textContent=t.cvText; cv.setAttribute("download","");
-    row(t.cvK, cv);
 
     document.getElementById("foot_rights").textContent=t.rights.replace("{year}",Y);
     document.getElementById("foot_ver").textContent="v"+VERSION;
